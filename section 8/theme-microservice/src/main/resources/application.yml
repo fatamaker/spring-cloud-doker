@@ -1,0 +1,50 @@
+server:
+  port: 8091
+
+spring:
+  profiles:
+    active: "qa"  # You're using 'qa' profile based on logs
+  config:
+    import: "optional:configserver:http://localhost:9999/"
+  application:
+    name: theme
+  datasource:
+    url: jdbc:mysql://mysqldb:3306/test?allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+
+
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  cloud:
+    config:
+      enabled: false
+    discovery:
+      enabled: false
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      defaultZone: 'http://localhost:8761/eureka/'
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+build:
+  version: 1.0
+
+author:
+  name: "fatma kerkeni Formation"
+  email: "fatmaker@gmail.com Formation"
